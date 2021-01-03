@@ -13,7 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv-volume
+  namespace: thingsboard
+  labels:
+    app: postgres
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 100Gi
+  nfs:
+    server: 192.168.1.205
+    path: /data/nfs/tbdata
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -23,7 +38,7 @@ metadata:
     app: postgres
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
@@ -61,7 +76,7 @@ spec:
         - name: POSTGRES_PASSWORD
           value: "postgres"
         - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
+          value: /var/lib/postgresql/data/tbdata
         volumeMounts:
           - mountPath: /var/lib/postgresql/data
             name: postgres-data
@@ -86,6 +101,7 @@ spec:
           initialDelaySeconds: 5
           timeoutSeconds: 1
       restartPolicy: Always
+ 
 ---
 apiVersion: v1
 kind: Service

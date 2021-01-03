@@ -117,8 +117,7 @@ metadata:
   namespace: thingsboard
 spec:
   type: LoadBalancer
-  externalIPs:
-    - 183.111.236.25
+
   selector:
     app: tb-mqtt-transport
   ports:
