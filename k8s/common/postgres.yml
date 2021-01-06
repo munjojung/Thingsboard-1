@@ -24,9 +24,9 @@ spec:
   accessModes:
     - ReadWriteMany
   capacity:
-    storage: 100Gi
+    storage: 100Gi   ##실제 용량에 맞춰 변경
   nfs:
-    server: 192.168.1.205
+    server: 192.168.1.205  ##사용ip로 변경
     path: /data/nfs/tbdata
 ---
 apiVersion: v1
