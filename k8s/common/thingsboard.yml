@@ -118,7 +118,7 @@ metadata:
 spec:
   type: LoadBalancer
   externalIPs:
-    - 183.111.236.25
+    - 183.111.236.25  ##해당 IP로 
   selector:
     app: tb-mqtt-transport
   ports:
